@@ -241,7 +241,10 @@ $RECYCLE.BIN/
 
 */build/*
 
-# I saw somewhere that .aws-sam be added
+# I saw aws workshop that .aws-sam & samconfig.toml be added
 .aws-sam
+samconfig.toml
+
+.ZEELZ.md
 
 # End of https://www.gitignore.io/api/osx,linux,python,windows,pycharm,visualstudiocode
