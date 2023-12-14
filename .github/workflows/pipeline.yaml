@@ -3,11 +3,11 @@ name: Pipeline
 on:
   push:
     branches:
-      - 'main'
-      - 'feature**'
+      - "main"
+      - "feature**"
   delete:
     branches:
-      - 'feature**'
+      - "feature**"
 
 env:
   PIPELINE_USER_ACCESS_KEY_ID: ${{ secrets.A1833_PIPELINE_USER_AWS_ACCESS_KEY_ID }}
@@ -64,9 +64,11 @@ jobs:
       - name: Delete feature branch stack
         env:
           FEATURE_BRANCH_NAME: ${{ github.event.ref }}
+
+          # --stack-name $(echo ${FEATURE_BRANCH_NAME##*/} | tr -cd '[a-zA-Z0-9-]') \
         run: |
           sam delete \
-            --stack-name $(echo ${FEATURE_BRANCH_NAME##*/} | tr -cd '[a-zA-Z0-9-]') \
+            --stack-name ${PROD_STACK_NAME} \
             --region ${TESTING_REGION} \
             --no-prompts
 

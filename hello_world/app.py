@@ -33,7 +33,7 @@ def lambda_handler(event, context):
 
     #     raise e
     # print(event['body'])
-    data = event["city"]
+    data = event["body"]
     return {
         "statusCode": 200,
         "body": json.dumps({
