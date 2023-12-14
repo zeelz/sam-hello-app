@@ -2,9 +2,7 @@ name: Pipeline
 
 on:
   push:
-    branches:
-      - "main"
-      - "feature**"
+    branches: []
   delete:
     branches:
       - "feature**"
@@ -64,11 +62,9 @@ jobs:
       - name: Delete feature branch stack
         env:
           FEATURE_BRANCH_NAME: ${{ github.event.ref }}
-
-          # --stack-name $(echo ${FEATURE_BRANCH_NAME##*/} | tr -cd '[a-zA-Z0-9-]') \
         run: |
           sam delete \
-            --stack-name ${PROD_STACK_NAME} \
+            --stack-name $(echo ${FEATURE_BRANCH_NAME##*/} | tr -cd '[a-zA-Z0-9-]') \
             --region ${TESTING_REGION} \
             --no-prompts
 
